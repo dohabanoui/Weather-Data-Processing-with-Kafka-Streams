@@ -261,5 +261,66 @@ Pour démarrer les services nécessaires au projet, utilisez la commande suivant
 docker-compose up -d
 ```
 ![](pictures/1.png)
+## Vérification des conteneurs en cours d'exécution
+Après avoir démarré les services avec `docker-compose up -d`, vous pouvez vérifier que les conteneurs sont correctement démarrés en exécutant la commande suivante :
+
+```java
+docker ps
+```
+![](pictures/2.png)
+
+## Accéder à un conteneur en cours d'exécution
+
+Pour interagir avec un conteneur en cours d'exécution, vous pouvez utiliser la commande `docker exec`. Par exemple, pour accéder au conteneur Kafka Broker, exécutez la commande suivante :
+
+```bash
+docker exec -it <CONTAINER_ID> bash
+```
+![](pictures/3.png)
+Une fois à l'intérieur du conteneur, exécutez la commande suivante pour créer un topic :
+```bash
+kafka-topics --create --topic weather-data --bootstrap-server localhost:9093
+```
+![](pictures/4.png)
+Pour vérifier que le topic a bien été créé, vous pouvez exécuter la commande suivante à l'intérieur du conteneur :
+```bash
+kafka-topics --list --bootstrap-server localhost:9093
+```
+![](pictures/5.png)
+## pour station-averages
+on fait la meme chose
+![](pictures/6.png)
+![](pictures/7.png)
+![](pictures/8.png)
+## Utilisation d'un producteur et d'un consommateur Kafka
+Une fois le topic Kafka créé, v
+ous pouvez utiliser les outils en ligne de commande pour produire et consommer des messages dans ce topic.
+#### Lancer un producteur Kafka
+Pour envoyer des messages au topic `weather-data`, utilisez la commande suivante à l'intérieur du conteneur Kafka Broker :
+```bash
+kafka-console-producer --topic weather-data --bootstrap-server broker:9093
+```
+Pour lire les messages du topic weather-data, utilisez la commande suivante à l'intérieur du conteneur Kafka Broker :
+```bash
+kafka-console-consumer --topic weather-data --bootstrap-server broker:9093 --from-beginning
+```
+![](pictures/9.png)
+
+Une fois que les données ont été produites et traitées, vous pouvez consommer les résultats agrégés à partir du topic `station-averages`. Ce topic contient les moyennes calculées pour la température et l'humidité.
+Pour consommer les messages du topic `station-averages`, exécutez la commande suivante à l'intérieur du conteneur Kafka Broker :
+```bash
+kafka-console-consumer --topic station-averages --bootstrap-server broker:9093
+```
+![](pictures/10.png)
+
+# Conclusion
+
+Ce projet montre comment utiliser Kafka Streams pour le traitement en temps réel de flux de données, en effectuant des opérations telles que le filtrage, la transformation et l'agrégation. Il peut être facilement adapté pour traiter d'autres types de données en temps réel, telles que les données financières, IoT ou autres, en ajustant les étapes de transformation et de calcul selon les besoins.
+
+
+
+
+
+
 
 
