@@ -260,6 +260,6 @@ Pour démarrer les services nécessaires au projet, utilisez la commande suivant
 ```bash
 docker-compose up -d
 ```
-
+![](pictures/1.png)
 
 
