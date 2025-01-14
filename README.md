@@ -12,12 +12,6 @@ L'objectif de ce projet est de démontrer l'utilisation de Kafka Streams pour ef
 4. **Agrégation des données** : L'application regroupe les données par station météorologique et calcule les moyennes de la température (en Fahrenheit) et de l'humidité.
 5. **Publication des résultats** : Les résultats agrégés sont envoyés dans un nouveau topic Kafka `station-averages`, où ils peuvent être utilisés pour des analyses ou des visualisations ultérieures.
 
-### Fonctionnalités Clés
-
-- **Filtrage des enregistrements** : Le filtrage des données se fait en vérifiant si la température est supérieure à 30°C.
-- **Conversion de la température** : Une fois filtrées, les températures sont converties de Celsius à Fahrenheit pour standardiser les données.
-- **Agrégation par station** : Les données sont regroupées par station (identifiées par leur nom) et agrégées en calculant les moyennes des températures et de l'humidité.
-- **Production des résultats** : Les résultats sont envoyés à un topic Kafka avec une description de la température moyenne et de l'humidité moyenne par station.
 
 ### Architecture du Projet
 
